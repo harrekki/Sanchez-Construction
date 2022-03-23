@@ -5,7 +5,7 @@
 //              to enter the current prime interest rate and other information about 5 new loans.  It then generates 
 //              a loan number and calculates the total amount the customer owes at the end of each loan term.  The 
 //              details of each loan are then displayed.
-
+import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -14,35 +14,26 @@ public class CreateLoans
     public static void main(String[] args)
     {
         // Variables for loan array, user input, and prime interest rate
-        Loan[] loans = new Loan[5];
+        ArrayList<Loan> loans = new ArrayList<Loan>();
         Scanner input = new Scanner(System.in);
         DecimalFormat dfDollar = new DecimalFormat("###,##0.00"); // to display dollar values with 2 decimal places
         double primeInterestRate = 0.0325;
 
-        /* test values - should be commented out in production
-        loans[0] = new PersonalLoan("Smith", 25000, 3, primeInterestRate);
-        loans[1] = new BusinessLoan("Jones", 50000, 5, primeInterestRate);
-        loans[2] = new BusinessLoan("Adams", 75000, 5, primeInterestRate);
-        loans[3] = new BusinessLoan("Turner", 100000, 5, primeInterestRate);
-        loans[4] = new PersonalLoan("Ramos", 10000, 1, primeInterestRate);
-        */
-
         // Variables for loop
         int userChoice = 0;
+        final int QUIT = 999;
         String userLastName = "";
         double userLoanAmount = 0;
         int userLoanTerm = 0;
         
         System.out.print("Enter the current prime interest rate XX.XXX >> ");
         primeInterestRate = input.nextDouble();
-        for(int i = 0; i < loans.length; i++) 
+        System.out.print("Loan Type:\n\t1 - Business\n\t2 - Personal\n Choose type of loan or " + QUIT + " to quit >> ");
+        userChoice = input.nextInt();
+        input.nextLine();
+        // while loop to get information on each loan
+        while(userChoice != QUIT)
         {
-            System.out.println("Loan #" + (i + 1));
-            System.out.print("Loan Type:\n\t1 - Business\n\t2 - Personal\n Choose type of loan >> ");
-            userChoice = input.nextInt();
-            input.nextLine();
-
-            // get user inputs
             System.out.print("Enter customer's last name >> ");
             userLastName = input.nextLine();
             System.out.print("Enter loan amount >> ");
@@ -52,15 +43,20 @@ public class CreateLoans
             userLoanTerm = input.nextInt();
 
             if(userChoice == 1)
-                loans[i] = new BusinessLoan(userLastName, userLoanAmount, userLoanTerm, primeInterestRate);
+                loans.add(new BusinessLoan(userLastName, userLoanAmount, userLoanTerm, primeInterestRate));
             else if(userChoice == 2)
-                loans[i] = new PersonalLoan(userLastName, userLoanAmount, userLoanTerm, primeInterestRate);
+                loans.add(new PersonalLoan(userLastName, userLoanAmount, userLoanTerm, primeInterestRate));
 
             System.out.println("Loan information entered successfully.");
             System.out.println();
-        } // end for loop
+            System.out.print("Loan Type:\n\t1 - Business\n\t2 - Personal\n Choose type of loan or " + QUIT + " to quit >> ");
+            userChoice = input.nextInt();
+            input.nextLine();
+        } // end while loop
         
         // Display information on all loans
+        System.out.println("\nNumber of loans entered: " + loans.size());
+        System.out.println();
         for(Loan application : loans)
         {
             System.out.println(application.toString()); // Displays loan information
