@@ -44,7 +44,17 @@ public abstract class Loan implements LoanConstants
         this.interestRate = rate;
     }
 
-    // get methods to retrieve loan amount, loan term, and interest rate
+    // get methods
+    public String getLoanNumber()
+    {
+        return loanNumber;
+    }
+
+    public String getLastName() 
+    {
+        return lastName;
+    }
+    
     public double getLoanAmount()
     {
         return loanAmt;
