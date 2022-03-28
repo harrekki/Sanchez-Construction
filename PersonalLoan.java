@@ -10,7 +10,7 @@ public class PersonalLoan extends Loan
     {
         super(lastName, amount, term);
         // set interest rate to 2% more than current prime interest rate
-        this.setInterestRate(interest + .02);
+        this.setInterestRate(interest + 2);
         this.loanNumber += "P";
     }
 }

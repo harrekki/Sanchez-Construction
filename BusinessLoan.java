@@ -10,7 +10,7 @@ public class BusinessLoan extends Loan
     {
         super(lastName, amount, term);
         // set interest rate to 1% more than current prime interest rate
-        this.setInterestRate(interest + .01);
+        this.setInterestRate(interest + 1);
         this.loanNumber += "B";
     }
 }
