@@ -45,16 +45,16 @@ public abstract class Loan implements LoanConstants
     }
 
     // get methods
-    public String getLoanNumber()
+    public String getLoanNumber() 
     {
         return loanNumber;
     }
 
-    public String getLastName() 
+    public String getLastName()
     {
         return lastName;
     }
-    
+
     public double getLoanAmount()
     {
         return loanAmt;
